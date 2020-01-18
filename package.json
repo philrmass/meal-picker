@@ -1,8 +1,8 @@
 {
-  "name": "react-setup",
+  "name": "meal-picker",
   "version": "1.0.0",
-  "homepage": "https://philrmass.github.io/react-setup",
-  "description": "react-setup-description",
+  "homepage": "https://philrmass.github.io/meal-picker",
+  "description": "Randomly picks meals",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",

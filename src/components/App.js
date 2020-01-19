@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
-import Footer from './Footer';
+import Meals from './Meals';
+import Picker from './Picker';
 import styles from '../styles/App.module.css';
 
 function App() {
+  const [showMeals, setShowMeals] = useState(false);
+
   return (
     <div className={styles.page}>
-      <Header/>
-      <div className={styles.main}>Main</div>
-      <Footer/>
+      <Header
+        showMeals={setShowMeals}
+      />
+      <div className={styles.main}>
+        {!showMeals && (
+          <Picker />
+        )}
+        {showMeals && (
+          <Meals
+            close={() => setShowMeals(false)}
+          />
+        )}
+      </div>
     </div>
   );
 }

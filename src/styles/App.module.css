@@ -3,7 +3,33 @@
 }
 
 .main {
+  --page-offset: 10px;
+  position: relative;
+  display: flex;
   height: var(--height-main);
   background: var(--bg-lt-gray);
   color: var(--text-normal);
+}
+
+.content {
+  position: absolute;
+  left: calc(0px + var(--page-offset));
+  height: 100%;
+  width: 100%;
+}
+
+.left {
+  position: absolute;
+  left: calc(-30px + var(--page-offset));
+  width: 30px;
+  height: 100%;
+  background: #f0d0d0;
+}
+
+.right {
+  position: absolute;
+  right: calc(-1 * (var(--width-arrow) + var(--page-offset)));
+  width: 30px;
+  height: 100%;
+  background: #d0d0f0;
 }

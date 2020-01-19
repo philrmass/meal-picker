@@ -13,14 +13,20 @@ function App() {
         showMeals={setShowMeals}
       />
       <div className={styles.main}>
-        {!showMeals && (
-          <Picker />
-        )}
-        {showMeals && (
-          <Meals
-            close={() => setShowMeals(false)}
-          />
-        )}
+        <div className={styles.left}>
+        </div>
+        <div className={styles.content}>
+          {!showMeals && (
+            <Picker />
+          )}
+          {showMeals && (
+            <Meals
+              close={() => setShowMeals(false)}
+            />
+          )}
+        </div>
+        <div className={styles.right}>
+        </div>
       </div>
     </div>
   );

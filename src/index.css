@@ -7,6 +7,7 @@
   --size-header: 6vh;
   --height-header: 10%;
   --height-main: 90%;
+  --width-arrow: 30px;
 }
 
 * {

@@ -9,5 +9,7 @@
 }
 
 .link {
+  padding: 0;
+  border: none;
   margin-right: 0.2em;
 }

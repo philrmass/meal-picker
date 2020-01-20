@@ -2,8 +2,9 @@
   --bg-white: #ffffff;
   --bg-lt-gray: #e8e8e8;
   --bg-dk-gray: #787878;
-  --text-normal: #282828;
-  --text-header: #484848;
+  --text-normal: #484848;
+  --text-header: #585858;
+  --border: #d8d8d8;
   --size-normal: 16px;
   --size-header: 6vh;
   --height-header: 10%;
@@ -21,4 +22,22 @@ body {
   padding: 0;
   font-family: "Helvetica", sans-serif;
   font-size: var(--size-normal);
+}
+
+button {
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-white);
+}
+
+button:disabled {
+  color: red;
+}
+
+input[type=text] {
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-white);
 }

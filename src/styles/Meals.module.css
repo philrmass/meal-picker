@@ -1,3 +1,41 @@
 .main {
-  background: #e080ff;
+}
+
+.addRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+}
+
+.addRow > * {
+  margin-left: 4px;
+}
+
+.mealsBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.meals {
+  display: inline-block;
+}
+
+.meal {
+  padding: 3px;
+}
+
+.buttonRow {
+  margin: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.removeButton {
+  margin: 0 8px;
+  padding: 2px 4px;
+  font-size: 0.8em;
+  color: #ff4040;
 }

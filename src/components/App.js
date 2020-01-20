@@ -1,4 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import uuidv4 from 'uuid/v4';
+import { saveData } from '../utilities/file';
+import { useLocalStorage } from '../utilities/storage';
+import mealPickerData from '../data/mealPicker.json';
 import Header from './Header';
 import Meals from './Meals';
 import Picker from './Picker';
@@ -6,8 +10,15 @@ import styles from '../styles/App.module.css';
 
 function App() {
   const mainRef = useRef(null);
-  const [showMeals, setShowMeals] = useState(false);
+  const [meals, setMeals] = useLocalStorage('mealPickerMeals', mealPickerData.meals);
+  const [favorites, setFavorites] = useLocalStorage('mealPickerFavorites', mealPickerData.favorites);
+  const [dayMeals, setDayMeals] = useLocalStorage('mealPickerDayMeals', getDefaultDayMeals());
   const [startX, setStartX] = useState(null);
+  const [showMeals, setShowMeals] = useState(true);
+
+  useEffect(() => {
+    console.log('START', '\n meals', meals, '\n favs', favorites, '\n days', dayMeals, '\n data', mealPickerData);
+  }, []);
 
   function handleStart(event) {
     const x = getX(event);
@@ -54,12 +65,41 @@ function App() {
     mainRef.current.style.setProperty('--page-offset', `${Math.round(clipped)}px`);
   }
 
+  function addMeal(name) {
+    const meal = {
+      name,
+      guid: uuidv4(),
+    };
+    console.log('ADD-MEAL', meal.name, meal.guid);
+    setMeals((meals) => [...meals, meal]);
+  }
+
+  function removeMeal(guid) {
+    console.log('REM-MEAL', guid);
+    setMeals((meals) => meals.filter((meal) => meal.guid !== guid));
+  }
+
+  function exportData() {
+    const data = {
+      meals,
+      favorites,
+    };
+    saveData(data, 'mealPicker.json');
+  }
+
+  function getDefaultDayMeals() {
+    return Array(7).fill('');
+  }
+
+  function setDayMeal(index, guid) {
+  }
+
   return (
     <div className={styles.page}>
       <Header
         showMeals={setShowMeals}
       />
-      <div 
+      <div
         ref={mainRef}
         className={styles.main}
         onTouchStart={handleStart}
@@ -70,11 +110,18 @@ function App() {
         </div>
         <div className={styles.content}>
           {!showMeals && (
-            <Picker />
+            <Picker
+              dayMeals={dayMeals}
+              setDayMeal={setDayMeal}
+            />
           )}
           {showMeals && (
             <Meals
-              close={() => setShowMeals(false)}
+              meals={meals}
+              favorites={favorites}
+              addMeal={addMeal}
+              removeMeal={removeMeal}
+              exportData={exportData}
             />
           )}
         </div>

@@ -1,28 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MealScroller from './MealScroller';
 import styles from '../styles/Picker.module.css';
 
 function Picker({
+  meals,
   dayMeals,
   addDayMeal,
 }) {
-  const dayLabels = [
-    'Saturday',
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-  ];
-
   function buildDays() {
-    return dayMeals.map((meal) => {
-      //const label = dayLabels[index];
+    return dayMeals.map((dayMeal) => {
+      //options = {};
+      //const label = 
+      //new Date().getLocaleDateString();
+      const meal = { name: 'yo' };
       return (
         <MealScroller
-          key={meal.name}
+          key={dayMeal.day}
           meal={meal}
         />
       );
@@ -37,7 +31,8 @@ function Picker({
 }
 
 Picker.propTypes = {
-  dayMeals: PropTypes.arrayOf(PropTypes.string),
+  meals: PropTypes.arrayOf(PropTypes.object),
+  dayMeals: PropTypes.arrayOf(PropTypes.object),
   addDayMeal: PropTypes.func,
 };
 

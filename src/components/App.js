@@ -14,7 +14,7 @@ function App() {
   const [favorites, setFavorites] = useLocalStorage('mealPickerFavorites', mealPickerData.favorites);
   const [dayMeals, setDayMeals] = useLocalStorage('mealPickerDayMeals', getDefaultDayMeals());
   const [startX, setStartX] = useState(null);
-  const [showMeals, setShowMeals] = useState(true);
+  const [showMeals, setShowMeals] = useState(false);
 
   useEffect(() => {
     console.log('START', '\n meals', meals, '\n favs', favorites, '\n days', dayMeals, '\n data', mealPickerData);
@@ -88,10 +88,19 @@ function App() {
   }
 
   function getDefaultDayMeals() {
-    return Array(7).fill('');
+    return [
+      { day: 6, guid: '' },
+      { day: 0, guid: '' },
+      { day: 1, guid: '' },
+      { day: 2, guid: '' },
+      { day: 3, guid: '' },
+      { day: 4, guid: '' },
+      { day: 5, guid: '' },
+    ];
   }
 
-  function setDayMeal(index, guid) {
+  function setDayMeal(day, guid) {
+    console.log('SET-DAY-MEAL', day, guid);
   }
 
   return (
@@ -111,6 +120,7 @@ function App() {
         <div className={styles.content}>
           {!showMeals && (
             <Picker
+              meals={meals}
               dayMeals={dayMeals}
               setDayMeal={setDayMeal}
             />

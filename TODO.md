@@ -1,7 +1,11 @@
 # Tasks
-- Add day meals defaults
-- Add day label
+- Add day label to picker
+- Change meals to objects by guid
+- Add meal name to picker
 - Add clear and roll buttons to picker
-- Add a way to set a favorite (click)
+- Add a way to set a favorite (click) in meals
 - Save guid to favorites
-- Display favorites on Picker
+- Display favorites in picker
+- Implement drag and drop
+- Add method to select a meal
+- Select on drop

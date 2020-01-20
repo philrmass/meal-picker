@@ -5,7 +5,7 @@ import styles from '../styles/MealScroller.module.css';
 function MealScroller({ meal }) {
   return (
     <div className={styles.main}>
-      {`${meal.name}: Meal`}
+      {`${meal.name}`}
     </div>
   );
 }

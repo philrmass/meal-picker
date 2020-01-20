@@ -71,7 +71,12 @@ function App() {
       guid: uuidv4(),
     };
     console.log('ADD-MEAL', meal.name, meal.guid);
-    setMeals((meals) => [...meals, meal]);
+    setMeals((meals) => {
+      return {
+        ...meals,
+        [meal.guid]: meal,
+      };
+    });
   }
 
   function removeMeal(guid) {
@@ -88,8 +93,9 @@ function App() {
   }
 
   function getDefaultDayMeals() {
+    //??? remove default
     return [
-      { day: 6, guid: '' },
+      { day: 6, guid: 'f686936c-d0c5-4fd3-aa50-a0206470f325' },
       { day: 0, guid: '' },
       { day: 1, guid: '' },
       { day: 2, guid: '' },

@@ -16,7 +16,7 @@ function Meals({
   }
 
   function buildMeals() {
-    return meals.map((meal) => {
+    return Object.values(meals).map((meal) => {
       return (
         <div
           key={meal.guid}
@@ -57,7 +57,7 @@ function Meals({
 }
 
 Meals.propTypes = {
-  meals: PropTypes.arrayOf(PropTypes.object),
+  meals: PropTypes.object,
   favorites: PropTypes.arrayOf(PropTypes.string),
   addMeal: PropTypes.func,
   removeMeal: PropTypes.func,

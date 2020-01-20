@@ -8,16 +8,26 @@ function Picker({
   dayMeals,
   addDayMeal,
 }) {
+  const days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+
   function buildDays() {
     return dayMeals.map((dayMeal) => {
-      //options = {};
-      //const label = 
-      //new Date().getLocaleDateString();
-      const meal = { name: 'yo' };
+      const label = days[dayMeal.day];
+      const meal = meals[dayMeal.guid] || {};
       return (
         <MealScroller
           key={dayMeal.day}
+          meals={meals}
           meal={meal}
+          label={label}
         />
       );
     });
@@ -31,7 +41,7 @@ function Picker({
 }
 
 Picker.propTypes = {
-  meals: PropTypes.arrayOf(PropTypes.object),
+  meals: PropTypes.object,
   dayMeals: PropTypes.arrayOf(PropTypes.object),
   addDayMeal: PropTypes.func,
 };

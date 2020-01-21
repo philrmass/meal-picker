@@ -2,13 +2,15 @@
   --bg-white: #ffffff;
   --bg-lt-gray: #e8e8e8;
   --bg-dk-gray: #787878;
+  --bg-gold: #c0b000;
   --text-normal: #484848;
   --text-header: #585858;
   --border: #d8d8d8;
   --size-normal: 16px;
-  --size-header: 6vh;
-  --height-header: 10%;
-  --height-main: 90%;
+  --size-big: 26px;
+  --size-header: 5vh;
+  --height-header: 7%;
+  --height-main: 93%;
   --width-arrow: 30px;
 }
 

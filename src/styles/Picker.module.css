@@ -1,2 +1,16 @@
 .main {
 }
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4px;
+}
+
+.rollButton {
+  font-size: var(--size-big);
+  background: var(--bg-gold);
+  border: 1px solid #ffef00;
+}
+

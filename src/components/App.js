@@ -17,7 +17,8 @@ function App() {
   const [showMeals, setShowMeals] = useState(false);
 
   useEffect(() => {
-    console.log('START', '\n meals', meals, '\n favs', favorites, '\n days', dayMeals, '\n data', mealPickerData);
+    console.log('START', Object.keys(meals).length);
+    //console.log('START', '\n meals', meals, '\n favs', favorites, '\n days', dayMeals, '\n data', mealPickerData);
   }, []);
 
   function handleStart(event) {
@@ -70,7 +71,6 @@ function App() {
       name,
       guid: uuidv4(),
     };
-    console.log('ADD-MEAL', meal.name, meal.guid);
     setMeals((meals) => {
       return {
         ...meals,
@@ -80,8 +80,12 @@ function App() {
   }
 
   function removeMeal(guid) {
-    console.log('REM-MEAL', guid);
-    setMeals((meals) => meals.filter((meal) => meal.guid !== guid));
+    setMeals((meals) => Object.keys(meals).reduce((value, mealGuid) => {
+      if (mealGuid !== guid) {
+        value[mealGuid] = meals[mealGuid];
+      }
+      return value;
+    }, {}));
   }
 
   function exportData() {
@@ -93,16 +97,54 @@ function App() {
   }
 
   function getDefaultDayMeals() {
-    //??? remove default
-    return [
-      { day: 6, guid: 'f686936c-d0c5-4fd3-aa50-a0206470f325' },
-      { day: 0, guid: '' },
-      { day: 1, guid: '' },
-      { day: 2, guid: '' },
-      { day: 3, guid: '' },
-      { day: 4, guid: '' },
-      { day: 5, guid: '' },
-    ];
+    const days = [6, 0, 1, 2, 3, 4, 5];
+    return days.map((day) => ({
+      day,
+      guid: '',
+      isSet: false,
+      showTime: 0,
+    }));
+  }
+
+  function pickRandomMeal(excluded = []) {
+    const guids = Object.keys(meals).filter((guid) => !excluded.includes(guid));
+    const index = Math.floor(guids.length * Math.random());
+    return guids[index] || '';
+  }
+
+  function pickRandomMealName() {
+    return meals[pickRandomMeal()].name;
+  }
+
+  function calcShowTime(now, index) {
+    const scrollTime = 700;
+    const delay = (1 + index) * scrollTime;
+    return now + delay;
+  }
+
+  function clearDayMeals() {
+    setDayMeals(getDefaultDayMeals());
+  }
+
+  function pickDayMeals() {
+    const now = Date.now();
+    setDayMeals((dayMeals) => {
+      const used = [];
+      return dayMeals.map((dayMeal) => {
+        if (dayMeal.isSet) {
+          used.push(dayMeal.guid);
+          return dayMeal;
+        }
+        const guid = pickRandomMeal(used);
+        const showTime = calcShowTime(now, used.length);
+        used.push(guid);
+        return {
+          ...dayMeal,
+          showTime,
+          guid,
+        };
+      });
+    });
   }
 
   function setDayMeal(day, guid) {
@@ -128,7 +170,10 @@ function App() {
             <Picker
               meals={meals}
               dayMeals={dayMeals}
+              pickDayMeals={pickDayMeals}
+              clearDayMeals={clearDayMeals}
               setDayMeal={setDayMeal}
+              pickRandomMealName={pickRandomMealName}
             />
           )}
           {showMeals && (

@@ -1,6 +1,29 @@
 
-  {"meals":{
-  "f686936c-d0c5-4fd3-aa50-a0206470f325":
+  {"meals":
+  {"f686936c-d0c5-4fd3-aa50-a0206470f325":
   {"name":"Chicken Thigh Tacos","guid":"f686936c-d0c5-4fd3-aa50-a0206470f325"
-  }},"favorites":[]
+  },"77c17170-779c-404a-9bba-ae43ee805f9f":
+  {"name":"Pizza","guid":"77c17170-779c-404a-9bba-ae43ee805f9f"
+  },"2a4148f3-f858-4d72-959f-5b7c67e1d0ae":
+  {"name":"Go Out","guid":"2a4148f3-f858-4d72-959f-5b7c67e1d0ae"
+  },"a5e7dfd9-6f69-4e61-837f-3b682576616b":
+  {"name":"Breakfast Burritos","guid":"a5e7dfd9-6f69-4e61-837f-3b682576616b"
+  },"02737e78-d60e-4371-ab7f-2903a09c3eec":
+  {"name":"Korean Beef BBQ","guid":"02737e78-d60e-4371-ab7f-2903a09c3eec"
+  },"03823390-d7d4-4447-b294-df1e1c516b18":
+  {"name":"Spaghetti & Meat Sauce","guid":"03823390-d7d4-4447-b294-df1e1c516b18"
+  },"d9c16709-8c3d-4fbc-a254-8ecac0a39a06":
+  {"name":"Turkey Burgers","guid":"d9c16709-8c3d-4fbc-a254-8ecac0a39a06"
+  },"cc01a948-8da8-4215-8fa7-bb579bdaa8f9":
+  {"name":"Sausage Avocado Tacos","guid":"cc01a948-8da8-4215-8fa7-bb579bdaa8f9"
+  },"a6e2c1f5-38a5-4b32-9034-2451a2c7e78a":
+  {"name":"Fish Tacos","guid":"a6e2c1f5-38a5-4b32-9034-2451a2c7e78a"
+  },"9284786d-5928-4ff0-9847-094d3b5a7386":
+  {"name":"Gyros","guid":"9284786d-5928-4ff0-9847-094d3b5a7386"
+  },"07426322-f1f3-4cd9-b264-8b2c7a81f501":
+  {"name":"Sausage & Apples","guid":"07426322-f1f3-4cd9-b264-8b2c7a81f501"
+  },"59ee0c36-61e4-47b3-95a2-485ca84e8e0f":
+  {"name":"Chili","guid":"59ee0c36-61e4-47b3-95a2-485ca84e8e0f"
+  }
+  },"favorites":[]
   }

@@ -1,11 +1,7 @@
 # Tasks
-- Add day label to picker
-- Change meals to objects by guid
-- Add meal name to picker
-- Add clear and roll buttons to picker
-- Add a way to set a favorite (click) in meals
-- Save guid to favorites
+- Add scrolling animation on roll
+- Toggle click meal to set as favorite, save in App
 - Display favorites in picker
+- Toggle click to set day meal
 - Implement drag and drop
-- Add method to select a meal
-- Select on drop
+- isSet on drop

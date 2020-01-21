@@ -6,7 +6,10 @@ import styles from '../styles/Picker.module.css';
 function Picker({
   meals,
   dayMeals,
-  addDayMeal,
+  pickDayMeals,
+  clearDayMeals,
+  setDayMeal,
+  pickRandomMealName,
 }) {
   const days = [
     'Sunday',
@@ -28,6 +31,8 @@ function Picker({
           meals={meals}
           meal={meal}
           label={label}
+          showTime={dayMeal.showTime}
+          pickRandomMealName={pickRandomMealName}
         />
       );
     });
@@ -35,7 +40,20 @@ function Picker({
 
   return (
     <div className={styles.main}>
+      <div className={styles.row}>
+        <button
+          className={styles.rollButton}
+          onClick={pickDayMeals}
+        >
+          Roll
+        </button>
+      </div>
       {buildDays()}
+      <div className={styles.row}>
+        <button onClick={clearDayMeals} >
+          Clear
+        </button>
+      </div>
     </div>
   );
 }
@@ -43,7 +61,10 @@ function Picker({
 Picker.propTypes = {
   meals: PropTypes.object,
   dayMeals: PropTypes.arrayOf(PropTypes.object),
-  addDayMeal: PropTypes.func,
+  pickDayMeals: PropTypes.func,
+  clearDayMeals: PropTypes.func,
+  setDayMeal: PropTypes.func,
+  pickRandomMealName: PropTypes.func,
 };
 
 export default Picker;

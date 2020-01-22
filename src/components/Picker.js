@@ -22,7 +22,8 @@ function Picker({
   ];
 
   function buildDays() {
-    return dayMeals.map((dayMeal) => {
+    //??? remove slice
+    return dayMeals.slice(0, 3).map((dayMeal) => {
       const label = days[dayMeal.day];
       const meal = meals[dayMeal.guid] || {};
       return (

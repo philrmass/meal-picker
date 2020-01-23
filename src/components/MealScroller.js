@@ -1,49 +1,64 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/MealScroller.module.css';
+//??? rename showTime to index
 
 function MealScroller({
-  meals,
   meal,
   label,
   showTime,
   pickRandomMealName,
 }) {
+  const namesPerS = 6;
+  const msPerName = 1000 / namesPerS;
   const namesWrap = useRef(null);
-  const [top, setTop] = useState(-20);
+  const [top, setTop] = useState(-200);
   const [names, setNames] = useState([]);
 
   useEffect(() => {
     const now = Date.now();
-    if (showTime > now) {
-      const timePerName = 700;
+    const isActive = showTime > now;
+    if (isActive) {
       const diff = showTime - now;
-      const nameCount = Math.ceil(diff / timePerName);
-      const vals = new Array(nameCount).fill(0);
+      const nameCount = Math.ceil(diff / msPerName);
+      const vals = new Array(nameCount - 1).fill(0);
       const randomNames = vals.map(() => pickRandomMealName());
-      setNames([meal.name, ...randomNames]);
-      console.log(label, 'ymin', getYMin());
-      /*
-      const yMin = getYMin();
-      if (top < yMin) {
-        setTop(yMin);
-      }
-      */
+      const offset = -100 * (randomNames.length + 2);
+      console.log(label.slice(0,3), 'NAMES', offset, nameCount);
+
+      setNames([meal.name, ...randomNames, '']);
+      setTop(offset);
+      animate(offset, diff);
     } else {
+      console.log(label.slice(0,3), 'NAME');
       setNames([meal.name]);
+      setTop(0);
     }
   }, [showTime]);
 
-  useEffect(() => {
-    console.log(label, 'YMIN', getYMin());
-  }, [namesWrap.current]);
+  function animate(offset, time) {
+    const offsetPerMs = offset / time;
+
+    function updateTop(timestamp) {
+      const now = Date.now();
+      const isActive = showTime > now;
+
+      if (isActive) {
+        const remaining = showTime - now;
+        const offset = Math.round(offsetPerMs * remaining);
+        setTop(offset);
+
+        //??? setTop():
+        window.requestAnimationFrame(updateTop);
+      } else {
+        setTop(0);
+      }
+    }
+    window.requestAnimationFrame(updateTop);
+  }
 
   function buildName() {
-    /*
-    setTop((top) => {
-    });
-    */
-
+    const topStyle = { top: `${Math.round(top)}%` };
     return (
       <div
         className={styles.namesWrap}
@@ -51,48 +66,16 @@ function MealScroller({
       >
         <div
           className={styles.names}
-          style={{ top }}
+          style={topStyle}
         >
           {names.map((name, index) => (
-            <div key={index} className={styles.name}>
+            <div key={index} className={styles.name}> {/*eslint-disable-line react/no-array-index-key*/}
               {name}
             </div>
           ))}
         </div>
       </div>
     );
-    /*
-    if (names.length > 0) {
-      return (
-        <div className={styles.listWrap}>
-          <div className={styles.list}>
-            {names.map((name, index) => (
-              <div
-                key={index}
-                className={styles.name}
-              >
-                {name}
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-    return (
-      <div className={styles.nameWrap}>
-        <div className={styles.name}>
-          {meal.name}
-        </div>
-      </div>
-    );
-    */
-  }
-
-  function getYMin() {
-    if (namesWrap.current) {
-      return namesWrap.current.clientHeight - namesWrap.current.scrollHeight;
-    }
-    return 0;
   }
 
   return (
@@ -106,7 +89,6 @@ function MealScroller({
 }
 
 MealScroller.propTypes = {
-  meals: PropTypes.object,
   meal: PropTypes.object,
   label: PropTypes.string,
   showTime: PropTypes.number,

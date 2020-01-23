@@ -17,7 +17,6 @@ function App() {
   const [showMeals, setShowMeals] = useState(false);
 
   useEffect(() => {
-    console.log('START', Object.keys(meals).length);
     //console.log('START', '\n meals', meals, '\n favs', favorites, '\n days', dayMeals, '\n data', mealPickerData);
   }, []);
 
@@ -117,8 +116,8 @@ function App() {
   }
 
   function calcShowTime(now, index) {
-    const scrollTime = 700;
-    const delay = (1 + index) * scrollTime;
+    const msPerIndex = 400;
+    const delay = (1 + index) * msPerIndex;
     return now + delay;
   }
 
@@ -136,6 +135,7 @@ function App() {
           return dayMeal;
         }
         const guid = pickRandomMeal(used);
+        //??? set index instead, move calcShowTime to MealScroller
         const showTime = calcShowTime(now, used.length);
         used.push(guid);
         return {

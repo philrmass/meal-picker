@@ -29,7 +29,6 @@ function Picker({
       return (
         <MealScroller
           key={dayMeal.day}
-          meals={meals}
           meal={meal}
           label={label}
           showTime={dayMeal.showTime}

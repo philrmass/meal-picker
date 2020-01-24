@@ -16,10 +16,6 @@ function App() {
   const [startX, setStartX] = useState(null);
   const [showMeals, setShowMeals] = useState(false);
 
-  useEffect(() => {
-    //console.log('START', '\n meals', meals, '\n favs', favorites, '\n days', dayMeals, '\n data', mealPickerData);
-  }, []);
-
   function handleStart(event) {
     const x = getX(event);
     setStartX(x);
@@ -135,13 +131,12 @@ function App() {
           return dayMeal;
         }
         const guid = pickRandomMeal(used);
-        //??? set index instead, move calcShowTime to MealScroller
         const showTime = calcShowTime(now, used.length);
         used.push(guid);
         return {
           ...dayMeal,
-          showTime,
           guid,
+          showTime,
         };
       });
     });

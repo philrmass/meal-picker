@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/MealScroller.module.css';
-//??? rename showTime to index
 
 function MealScroller({
+  day,
   meal,
   label,
+  isSet,
   showTime,
   pickRandomMealName,
+  setDayMeal,
 }) {
   const namesPerS = 6;
   const msPerName = 1000 / namesPerS;
@@ -17,20 +19,18 @@ function MealScroller({
 
   useEffect(() => {
     const now = Date.now();
-    const isActive = showTime > now;
-    if (isActive) {
-      const diff = showTime - now;
-      const nameCount = Math.ceil(diff / msPerName);
+    const remainingMs = showTime - now;
+
+    if (remainingMs > 0) {
+      const nameCount = Math.ceil(remainingMs / msPerName);
       const vals = new Array(nameCount - 1).fill(0);
       const randomNames = vals.map(() => pickRandomMealName());
       const offset = -100 * (randomNames.length + 2);
-      console.log(label.slice(0,3), 'NAMES', offset, nameCount);
 
       setNames([meal.name, ...randomNames, '']);
       setTop(offset);
-      animate(offset, diff);
+      animate(offset, remainingMs);
     } else {
-      console.log(label.slice(0,3), 'NAME');
       setNames([meal.name]);
       setTop(0);
     }
@@ -39,22 +39,24 @@ function MealScroller({
   function animate(offset, time) {
     const offsetPerMs = offset / time;
 
-    function updateTop(timestamp) {
-      const now = Date.now();
-      const isActive = showTime > now;
+    function updateTop() {
+      const remainingMs = showTime - Date.now();
 
-      if (isActive) {
-        const remaining = showTime - now;
-        const offset = Math.round(offsetPerMs * remaining);
+      if (remainingMs > 0) {
+        const offset = Math.round(offsetPerMs * remainingMs);
         setTop(offset);
-
-        //??? setTop():
         window.requestAnimationFrame(updateTop);
       } else {
         setTop(0);
       }
     }
     window.requestAnimationFrame(updateTop);
+  }
+
+  function handleClick() {
+    //??? check isSet and not scrolling, set or clear guid
+    console.log('CLICK', meal.name, day, meal.guid, isSet);
+    //setDayMeal(day, meal.guid);
   }
 
   function buildName() {
@@ -79,7 +81,7 @@ function MealScroller({
   }
 
   return (
-    <div className={styles.main}>
+    <div className={styles.main} onClick={handleClick}>
       <div className={styles.label}>
         {label}
       </div>
@@ -89,10 +91,13 @@ function MealScroller({
 }
 
 MealScroller.propTypes = {
+  day: PropTypes.number,
   meal: PropTypes.object,
   label: PropTypes.string,
+  isSet: PropTypes.bool,
   showTime: PropTypes.number,
   pickRandomMealName: PropTypes.func,
+  setDayMeal: PropTypes.func,
 };
 
 export default MealScroller;

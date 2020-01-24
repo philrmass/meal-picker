@@ -22,17 +22,19 @@ function Picker({
   ];
 
   function buildDays() {
-    //??? remove slice
-    return dayMeals.slice(0, 3).map((dayMeal) => {
+    return dayMeals.map((dayMeal) => {
       const label = days[dayMeal.day];
       const meal = meals[dayMeal.guid] || {};
       return (
         <MealScroller
           key={dayMeal.day}
+          day={dayMeal.day}
           meal={meal}
           label={label}
+          isSet={dayMeal.isSet}
           showTime={dayMeal.showTime}
           pickRandomMealName={pickRandomMealName}
+          setDayMeal={setDayMeal}
         />
       );
     });

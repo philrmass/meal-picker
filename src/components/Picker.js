@@ -42,18 +42,16 @@ function Picker({
 
   return (
     <div className={styles.main}>
-      <div className={styles.row}>
+      {buildDays()}
+      <div className={styles.buttonRow}>
+        <button onClick={clearDayMeals} >
+          Clear
+        </button>
         <button
           className={styles.rollButton}
           onClick={pickDayMeals}
         >
           Roll
-        </button>
-      </div>
-      {buildDays()}
-      <div className={styles.row}>
-        <button onClick={clearDayMeals} >
-          Clear
         </button>
       </div>
     </div>

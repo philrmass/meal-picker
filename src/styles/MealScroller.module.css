@@ -7,6 +7,13 @@
   border-radius: 8px;
   background: var(--bg-white);
   overflow: hidden;
+  box-sizing: border-box;
+}
+
+.set {
+  border: 1px solid var(--border-lt);
+  background: var(--bg-lt-gray);
+  color: var(--text-set);
 }
 
 .label {

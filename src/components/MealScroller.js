@@ -54,9 +54,9 @@ function MealScroller({
   }
 
   function handleClick() {
-    //??? check isSet and not scrolling, set or clear guid
-    console.log('CLICK', meal.name, day, meal.guid, isSet);
-    //setDayMeal(day, meal.guid);
+    if (Date.now() > showTime) {
+      setDayMeal(day, !isSet);
+    }
   }
 
   function buildName() {
@@ -80,8 +80,9 @@ function MealScroller({
     );
   }
 
+  const mainStyle = `${styles.main} ${isSet ? styles.set : ''}`;
   return (
-    <div className={styles.main} onClick={handleClick}>
+    <div className={mainStyle} onClick={handleClick}>
       <div className={styles.label}>
         {label}
       </div>

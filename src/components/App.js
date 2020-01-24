@@ -123,16 +123,18 @@ function App() {
 
   function pickDayMeals() {
     const now = Date.now();
+    let index = 0;
     setDayMeals((dayMeals) => {
-      const used = [];
+      const used = dayMeals.reduce((used, dm) => dm.isSet ? [...used, dm.guid] : used, []);
       return dayMeals.map((dayMeal) => {
         if (dayMeal.isSet) {
           used.push(dayMeal.guid);
           return dayMeal;
         }
         const guid = pickRandomMeal(used);
-        const showTime = calcShowTime(now, used.length);
         used.push(guid);
+        const showTime = calcShowTime(now, index);
+        index++;
         return {
           ...dayMeal,
           guid,
@@ -142,8 +144,18 @@ function App() {
     });
   }
 
-  function setDayMeal(day, guid) {
-    console.log('SET-DAY-MEAL', day, guid);
+  function setDayMeal(day, isSet) {
+    setDayMeals((dayMeals) => {
+      const index = dayMeals.findIndex((dayMeal) => dayMeal.day === day);
+      if (index < 0) {
+        return dayMeals;
+      }
+      const dayMeal = {
+        ...dayMeals[index],
+        isSet,
+      };
+      return [...dayMeals.slice(0, index), dayMeal, ...dayMeals.slice(index + 1)];
+    });
   }
 
   return (

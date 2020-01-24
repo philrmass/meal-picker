@@ -158,6 +158,14 @@ function App() {
     });
   }
 
+  function setFavorite(guid, isFavorite) {
+    if (isFavorite) {
+      setFavorites((favorites) => [...favorites, guid]);
+    } else {
+      setFavorites((favorites) => favorites.filter((f) => f !== guid));
+    }
+  }
+
   return (
     <div className={styles.page}>
       <Header
@@ -189,6 +197,7 @@ function App() {
               favorites={favorites}
               addMeal={addMeal}
               removeMeal={removeMeal}
+              setFavorite={setFavorite}
               exportData={exportData}
             />
           )}

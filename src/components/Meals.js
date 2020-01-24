@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/Meals.module.css';
 
@@ -7,6 +7,7 @@ function Meals({
   favorites,
   addMeal,
   removeMeal,
+  setFavorite,
   exportData,
 }) {
   const [name, setName] = useState('');
@@ -26,45 +27,50 @@ function Meals({
   }
 
   function buildMeals() {
-    return Object.values(meals).map((meal) => {
+    const sorted = Object.values(meals).sort((a, b) => a.name.localeCompare(b.name));
+    return sorted.map((meal) => {
+      const isFavorite = favorites.includes(meal.guid);
+      const mealStyle = `${styles.meal} ${isFavorite ? styles.favorite : ''}`;
       return (
         <div
           key={meal.guid}
-          className={styles.meal}
+          className={mealStyle}
+          onClick={() => setFavorite(meal.guid, !isFavorite)}
         >
           {meal.name}
           <button
             className={styles.removeButton}
-            onClick={() => removeMeal(meal.guid)}>X</button>
+            onClick={() => removeMeal(meal.guid)}
+          >
+            X
+          </button>
         </div>
       );
     });
   }
 
   return (
-    <Fragment>
-      <div className={styles.main}>
-        <div className={styles.addRow}>
-          <form onSubmit={handleSubmit}>
-            <input
-              type='text'
-              className={styles.textInput}
-              value={name}
-              onChange={handleNameChange}
-            />
-          </form>
-          <button onClick={handleAdd}>Add</button>
-        </div>
-        <div className={styles.mealsBox}>
-          <div className={styles.meals}>
-            {buildMeals()}
-          </div>
-        </div>
-        <div className={styles.buttonRow}>
-          <button onClick={exportData}>Export</button>
+    <div className={styles.main}>
+      <div className={styles.addRow}>
+        <form onSubmit={handleSubmit}>
+          <input
+            type='text'
+            className={styles.textInput}
+            value={name}
+            onChange={handleNameChange}
+          />
+        </form>
+        <button onClick={handleAdd}>Add</button>
+      </div>
+      <div className={styles.mealsBox}>
+        <div className={styles.meals}>
+          {buildMeals()}
         </div>
       </div>
-    </Fragment>
+      <div className={styles.buttonRow}>
+        <button onClick={exportData}>Export</button>
+      </div>
+    </div>
   );
 }
 
@@ -73,6 +79,7 @@ Meals.propTypes = {
   favorites: PropTypes.arrayOf(PropTypes.string),
   addMeal: PropTypes.func,
   removeMeal: PropTypes.func,
+  setFavorite: PropTypes.func,
   exportData: PropTypes.func,
 };
 

@@ -7,9 +7,11 @@ function MealScroller({
   meal,
   label,
   isSet,
+  selected,
   showTime,
   pickRandomMealName,
   setDayMeal,
+  clearSelected,
 }) {
   const namesPerS = 6;
   const msPerName = 1000 / namesPerS;
@@ -34,7 +36,7 @@ function MealScroller({
       setNames([meal.name]);
       setTop(0);
     }
-  }, [showTime]);
+  }, [showTime, meal.name]);
 
   function animate(offset, time) {
     const offsetPerMs = offset / time;
@@ -55,7 +57,12 @@ function MealScroller({
 
   function handleClick() {
     if (Date.now() > showTime) {
-      setDayMeal(day, !isSet);
+      if (selected) {
+        setDayMeal(day, true, selected);
+        clearSelected();
+      } else {
+        setDayMeal(day, !isSet);
+      }
     }
   }
 
@@ -96,9 +103,11 @@ MealScroller.propTypes = {
   meal: PropTypes.object,
   label: PropTypes.string,
   isSet: PropTypes.bool,
+  selected: PropTypes.string,
   showTime: PropTypes.number,
   pickRandomMealName: PropTypes.func,
   setDayMeal: PropTypes.func,
+  clearSelected: PropTypes.func,
 };
 
 export default MealScroller;

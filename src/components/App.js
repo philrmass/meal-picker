@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import uuidv4 from 'uuid/v4';
 import { saveData } from '../utilities/file';
 import { useLocalStorage } from '../utilities/storage';
@@ -13,12 +13,6 @@ function App() {
   const [meals, setMeals] = useLocalStorage('mealPickerMeals', mealPickerData.meals);
   const [favorites, setFavorites] = useLocalStorage('mealPickerFavorites', mealPickerData.favorites);
   const [dayMeals, setDayMeals] = useLocalStorage('mealPickerDayMeals', getDefaultDayMeals());
-  //??? remove
-  /*
-  const [meals, setMeals] = useState(mealPickerData.meals);
-  const [favorites, setFavorites] = useState(mealPickerData.favorites);
-  const [dayMeals, setDayMeals] = useState(getDefaultDayMeals());
-  */
   const [startX, setStartX] = useState(null);
   const [showMeals, setShowMeals] = useState(false);
 
@@ -81,6 +75,8 @@ function App() {
   }
 
   function removeMeal(guid) {
+    setFavorites((favorites) => favorites.filter((f) => f !== guid));
+    setDayMeals(getDefaultDayMeals());
     setMeals((meals) => Object.keys(meals).reduce((value, mealGuid) => {
       if (mealGuid !== guid) {
         value[mealGuid] = meals[mealGuid];
@@ -124,12 +120,6 @@ function App() {
   }
 
   function clearDayMeals() {
-    //??? remove
-    /*
-    delete localStorage.mealPickerMeals;
-    delete localStorage.mealPickerFavorites;
-    delete localStorage.mealPickerDayMeals;
-    */
     setDayMeals(getDefaultDayMeals());
   }
 
@@ -156,14 +146,17 @@ function App() {
     });
   }
 
-  function setDayMeal(day, isSet) {
+  function setDayMeal(day, isSet, mealGuid) {
     setDayMeals((dayMeals) => {
       const index = dayMeals.findIndex((dayMeal) => dayMeal.day === day);
       if (index < 0) {
         return dayMeals;
       }
+      const lastDayMeal = dayMeals[index];
+      const guid = mealGuid || lastDayMeal.guid;
       const dayMeal = {
-        ...dayMeals[index],
+        ...lastDayMeal,
+        guid,
         isSet,
       };
       return [...dayMeals.slice(0, index), dayMeal, ...dayMeals.slice(index + 1)];

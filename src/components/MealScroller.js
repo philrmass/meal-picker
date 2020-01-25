@@ -74,7 +74,6 @@ function MealScroller({
   }
 
   function handleEnd(event) {
-    event.preventDefault();
     if (pressTimer) {
       clearTimeout(pressTimer);
       setPressTimer(null);

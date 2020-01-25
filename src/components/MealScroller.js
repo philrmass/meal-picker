@@ -11,6 +11,7 @@ function MealScroller({
   showTime,
   pickRandomMealName,
   setDayMeal,
+  openMealsModal,
   clearSelected,
 }) {
   const namesPerS = 6;
@@ -18,6 +19,7 @@ function MealScroller({
   const namesWrap = useRef(null);
   const [top, setTop] = useState(-200);
   const [names, setNames] = useState([]);
+  const [pressTimer, setPressTimer] = useState(null);
 
   useEffect(() => {
     const now = Date.now();
@@ -66,6 +68,18 @@ function MealScroller({
     }
   }
 
+  function handleStart() {
+    const longPressMs = 600;
+    setPressTimer(setTimeout(() => openMealsModal(day), longPressMs));
+  }
+
+  function handleEnd() {
+    if (pressTimer) {
+      clearTimeout(pressTimer);
+      setPressTimer(null);
+    }
+  }
+
   function buildName() {
     const topStyle = { top: `${Math.round(top)}%` };
     return (
@@ -89,7 +103,12 @@ function MealScroller({
 
   const mainStyle = `${styles.main} ${isSet ? styles.set : ''}`;
   return (
-    <div className={mainStyle} onClick={handleClick}>
+    <div
+      className={mainStyle}
+      onClick={handleClick}
+      onTouchStart={handleStart}
+      onTouchEnd={handleEnd}
+    >
       <div className={styles.label}>
         {label}
       </div>
@@ -107,6 +126,7 @@ MealScroller.propTypes = {
   showTime: PropTypes.number,
   pickRandomMealName: PropTypes.func,
   setDayMeal: PropTypes.func,
+  openMealsModal: PropTypes.func,
   clearSelected: PropTypes.func,
 };
 

@@ -171,6 +171,11 @@ function App() {
     }
   }
 
+  function openMealsModal(day) {
+    console.log('OPEN-MODAL', day); // eslint-disable-line no-console
+    //??? set variable to open, add modal with all meals and set function
+  }
+
   return (
     <div className={styles.page}>
       <Header
@@ -194,6 +199,7 @@ function App() {
               pickDayMeals={pickDayMeals}
               clearDayMeals={clearDayMeals}
               setDayMeal={setDayMeal}
+              openMealsModal={openMealsModal}
               pickRandomMealName={pickRandomMealName}
             />
           )}

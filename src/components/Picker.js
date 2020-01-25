@@ -10,6 +10,7 @@ function Picker({
   pickDayMeals,
   clearDayMeals,
   setDayMeal,
+  openMealsModal,
   pickRandomMealName,
 }) {
   const days = [
@@ -42,6 +43,7 @@ function Picker({
           showTime={dayMeal.showTime}
           pickRandomMealName={pickRandomMealName}
           setDayMeal={setDayMeal}
+          openMealsModal={openMealsModal}
           clearSelected={() => setSelected('')}
         />
       );
@@ -93,6 +95,7 @@ Picker.propTypes = {
   pickDayMeals: PropTypes.func,
   clearDayMeals: PropTypes.func,
   setDayMeal: PropTypes.func,
+  openMealsModal: PropTypes.func,
   pickRandomMealName: PropTypes.func,
 };
 

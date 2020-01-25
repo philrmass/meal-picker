@@ -1,6 +1,7 @@
 :root {
   --bg-white: #ffffff;
   --bg-lt-gray: #e8e8e8;
+  --bg-md-gray: #d0d0d0;
   --bg-dk-gray: #787878;
   --bg-gold: #c0b000;
   --text-normal: #484848;
@@ -8,12 +9,14 @@
   --text-label: #808080;
   --text-set: #202020;
   --text-favorite: #a09000;
+  --text-white: #ffffff;
   --border: #d8d8d8;
   --border-lt: #dcdcdc;
   --size-normal: 16px;
   --size-big: 26px;
   --size-header: 5vh;
   --size-label: 11px;
+  --size-title: 20px;
   --height-header: 7%;
   --height-main: 93%;
   --height-meal: 2rem;

@@ -14,3 +14,29 @@
   border: 1px solid #ffef00;
 }
 
+.favorites {
+  border: 1px solid var(--border-lt);
+  border-radius: 8px;
+  margin: 16px;
+}
+
+.favoritesTitle {
+  padding: 4px 8px;
+  font-size: var(--size-title);
+  background: var(--bg-md-gray);
+}
+
+.favorite {
+  display: inline-block;
+  height: var(--height-meal);
+  padding: 0 16px;
+  border-radius: 8px;
+  margin: 4px 4px 0 0;
+  background: var(--bg-white);
+  line-height: var(--height-meal);
+}
+
+.selected {
+  color: var(--text-white);
+  background: var(--bg-gold);
+}

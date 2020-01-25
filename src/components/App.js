@@ -185,6 +185,7 @@ function App() {
             <Picker
               meals={meals}
               dayMeals={dayMeals}
+              favorites={favorites}
               pickDayMeals={pickDayMeals}
               clearDayMeals={clearDayMeals}
               setDayMeal={setDayMeal}

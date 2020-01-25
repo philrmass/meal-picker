@@ -1,5 +1,4 @@
 # Tasks
-- Display favorites in picker
 - Implement drag and drop, isSet on drop
-- double click to pick meal, MealsModal, Set/Cancel
-- add meal scrolling in meals
+- double click to pick meal from list, MealsModal, Set/Cancel
+- add scrolling meal section on overflow in meals

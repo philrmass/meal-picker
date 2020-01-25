@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import MealScroller from './MealScroller';
 import styles from '../styles/Picker.module.css';
@@ -6,6 +6,7 @@ import styles from '../styles/Picker.module.css';
 function Picker({
   meals,
   dayMeals,
+  favorites,
   pickDayMeals,
   clearDayMeals,
   setDayMeal,
@@ -20,6 +21,11 @@ function Picker({
     'Friday',
     'Saturday',
   ];
+  const [selected, setSelected] = useState('');
+
+  function toggleFavorite(guid) {
+    setSelected((selected) => selected === guid ? '' : guid);
+  }
 
   function buildDays() {
     return dayMeals.map((dayMeal) => {
@@ -40,6 +46,22 @@ function Picker({
     });
   }
 
+  function buildFavorites() {
+    return favorites.map((guid) => {
+      const isSelected = guid === selected;
+      const favoriteStyle = `${styles.favorite} ${isSelected ? styles.selected : ''}`;
+      return (
+        <div
+          key={guid}
+          className={favoriteStyle}
+          onClick={() => toggleFavorite(guid)}
+        >
+          {meals[guid].name}
+        </div>
+      );
+    });
+  }
+
   return (
     <div className={styles.main}>
       {buildDays()}
@@ -54,6 +76,10 @@ function Picker({
           Roll
         </button>
       </div>
+      <div className={styles.favorites}>
+        <div className={styles.favoritesTitle}>Favorites</div>
+        {buildFavorites()}
+      </div>
     </div>
   );
 }
@@ -61,6 +87,7 @@ function Picker({
 Picker.propTypes = {
   meals: PropTypes.object,
   dayMeals: PropTypes.arrayOf(PropTypes.object),
+  favorites: PropTypes.arrayOf(PropTypes.string),
   pickDayMeals: PropTypes.func,
   clearDayMeals: PropTypes.func,
   setDayMeal: PropTypes.func,

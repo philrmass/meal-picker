@@ -12,6 +12,7 @@ function Picker({
   setDayMeal,
   pickRandomMealName,
 }) {
+  const version = 1.0;
   const days = [
     'Sunday',
     'Monday',
@@ -80,6 +81,7 @@ function Picker({
         <div className={styles.favoritesTitle}>Favorites</div>
         {buildFavorites()}
       </div>
+      <div className={styles.version}>v{version}</div>
     </div>
   );
 }

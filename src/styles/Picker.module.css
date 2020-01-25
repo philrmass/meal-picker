@@ -40,3 +40,8 @@
   color: var(--text-white);
   background: var(--bg-gold);
 }
+
+.version {
+  font-size: 10px;
+  margin-left: 16px;
+}

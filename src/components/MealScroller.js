@@ -73,7 +73,8 @@ function MealScroller({
     setPressTimer(setTimeout(() => openMealsModal(day), longPressMs));
   }
 
-  function handleEnd() {
+  function handleEnd(event) {
+    event.preventDefault();
     if (pressTimer) {
       clearTimeout(pressTimer);
       setPressTimer(null);

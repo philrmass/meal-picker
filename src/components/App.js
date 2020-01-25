@@ -5,6 +5,7 @@ import { useLocalStorage } from '../utilities/storage';
 import mealPickerData from '../data/mealPicker.json';
 import Header from './Header';
 import Meals from './Meals';
+import MealsModal from './MealsModal';
 import Picker from './Picker';
 import styles from '../styles/App.module.css';
 
@@ -15,6 +16,7 @@ function App() {
   const [dayMeals, setDayMeals] = useLocalStorage('mealPickerDayMeals', getDefaultDayMeals());
   const [startX, setStartX] = useState(null);
   const [showMeals, setShowMeals] = useState(false);
+  const [modalDay, setModalDay] = useState(-1);
 
   function handleStart(event) {
     const x = getX(event);
@@ -171,11 +173,6 @@ function App() {
     }
   }
 
-  function openMealsModal(day) {
-    console.log('OPEN-MODAL', day); // eslint-disable-line no-console
-    //??? set variable to open, add modal with all meals and set function
-  }
-
   return (
     <div className={styles.page}>
       <Header
@@ -199,7 +196,7 @@ function App() {
               pickDayMeals={pickDayMeals}
               clearDayMeals={clearDayMeals}
               setDayMeal={setDayMeal}
-              openMealsModal={openMealsModal}
+              openMealsModal={setModalDay}
               pickRandomMealName={pickRandomMealName}
             />
           )}
@@ -217,6 +214,14 @@ function App() {
         <div className={styles.right}>
         </div>
       </div>
+      {modalDay >= 0 && (
+        <MealsModal
+          day={modalDay}
+          meals={meals}
+          setDayMeal={setDayMeal}
+          close={() => setModalDay(-1)}
+        />
+      )}
     </div>
   );
 }

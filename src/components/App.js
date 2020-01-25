@@ -10,9 +10,14 @@ import styles from '../styles/App.module.css';
 
 function App() {
   const mainRef = useRef(null);
+  /*
   const [meals, setMeals] = useLocalStorage('mealPickerMeals', mealPickerData.meals);
   const [favorites, setFavorites] = useLocalStorage('mealPickerFavorites', mealPickerData.favorites);
   const [dayMeals, setDayMeals] = useLocalStorage('mealPickerDayMeals', getDefaultDayMeals());
+  */
+  const [meals, setMeals] = useState(mealPickerData.meals);
+  const [favorites, setFavorites] = useState(mealPickerData.favorites);
+  const [dayMeals, setDayMeals] = useState(getDefaultDayMeals());
   const [startX, setStartX] = useState(null);
   const [showMeals, setShowMeals] = useState(false);
 
@@ -118,6 +123,12 @@ function App() {
   }
 
   function clearDayMeals() {
+    //??? remove
+    delete localStorage.mealPickerMeals;
+    delete localStorage.mealPickerFavorites;
+    delete localStorage.mealPickerDayMeals;
+    /*
+    */
     setDayMeals(getDefaultDayMeals());
   }
 

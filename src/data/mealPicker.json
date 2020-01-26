@@ -1,4 +1,3 @@
-
   {"meals":
   {"f686936c-d0c5-4fd3-aa50-a0206470f325":
   {"name":"Chicken Thigh Tacos","guid":"f686936c-d0c5-4fd3-aa50-a0206470f325"
@@ -24,6 +23,16 @@
   {"name":"Sausage & Apples","guid":"07426322-f1f3-4cd9-b264-8b2c7a81f501"
   },"59ee0c36-61e4-47b3-95a2-485ca84e8e0f":
   {"name":"Chili","guid":"59ee0c36-61e4-47b3-95a2-485ca84e8e0f"
+  },"a2c0999f-546f-49ed-8c3a-0883f8c3f8d0":
+  {"name":"Chicken & Veggie Tacos","guid":"a2c0999f-546f-49ed-8c3a-0883f8c3f8d0"
+  },"cdfc7089-1db3-48e6-a0f3-0546ef93d374":
+  {"name":"Lamb burgers","guid":"cdfc7089-1db3-48e6-a0f3-0546ef93d374"
+  },"74ea0d87-3b13-45ae-ab6d-bc3163353054":
+  {"name":"Swordfish pasta","guid":"74ea0d87-3b13-45ae-ab6d-bc3163353054"
+  },"2a420f85-7102-4e51-b9a4-5b3372ba05df":
+  {"name":"Beer-battered fish tacos","guid":"2a420f85-7102-4e51-b9a4-5b3372ba05df"
+  },"91d9822c-4229-44b5-bb1e-90b80e7ce6ce":
+  {"name":"Biscuit egg sandwiches ","guid":"91d9822c-4229-44b5-bb1e-90b80e7ce6ce"
   }
-  },"favorites":[]
+  },"favorites":["9284786d-5928-4ff0-9847-094d3b5a7386","77c17170-779c-404a-9bba-ae43ee805f9f"]
   }

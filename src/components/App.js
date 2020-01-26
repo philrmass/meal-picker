@@ -10,6 +10,7 @@ import Picker from './Picker';
 import styles from '../styles/App.module.css';
 
 function App() {
+  const version = '1.0.0';
   const mainRef = useRef(null);
   const [meals, setMeals] = useLocalStorage('mealPickerMeals', mealPickerData.meals);
   const [favorites, setFavorites] = useLocalStorage('mealPickerFavorites', mealPickerData.favorites);
@@ -176,6 +177,7 @@ function App() {
   return (
     <div className={styles.page}>
       <Header
+        version={version}
         showMeals={setShowMeals}
       />
       <div

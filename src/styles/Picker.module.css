@@ -1,4 +1,8 @@
 .main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .buttonRow {
@@ -14,16 +18,20 @@
   border: 1px solid #ffef00;
 }
 
-.favorites {
-  border: 1px solid var(--border-lt);
-  border-radius: 8px;
-  margin: 16px;
-}
-
 .favoritesTitle {
   padding: 4px 8px;
+  margin-top: 16px;
   font-size: var(--size-title);
   background: var(--bg-md-gray);
+}
+
+.favorites {
+  height: 100%;
+  border: 1px solid var(--border-lt);
+  border-top: 0;
+  border-radius: 0 0 8px 8px;
+  margin: 0 16px 16px 16px;
+  overflow-y: scroll;
 }
 
 .favorite {

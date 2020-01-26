@@ -5,7 +5,6 @@
 .main {
   --page-offset: 0px;
   position: relative;
-  display: flex;
   height: var(--height-main);
   background: var(--bg-lt-gray);
   color: var(--text-normal);

@@ -68,20 +68,22 @@ function Picker({
 
   return (
     <div className={styles.main}>
-      {buildDays()}
-      <div className={styles.buttonRow}>
-        <button onClick={clearDayMeals} >
-          Clear
-        </button>
-        <button
-          className={styles.rollButton}
-          onClick={pickDayMeals}
-        >
-          Roll
-        </button>
+      <div>
+        {buildDays()}
+        <div className={styles.buttonRow}>
+          <button onClick={clearDayMeals} >
+            Clear
+          </button>
+          <button
+            className={styles.rollButton}
+            onClick={pickDayMeals}
+          >
+            Roll
+          </button>
+        </div>
       </div>
+      <div className={styles.favoritesTitle}>Favorites</div>
       <div className={styles.favorites}>
-        <div className={styles.favoritesTitle}>Favorites</div>
         {buildFavorites()}
       </div>
     </div>

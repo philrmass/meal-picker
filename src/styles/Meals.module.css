@@ -1,4 +1,8 @@
 .main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .addRow {
@@ -13,9 +17,12 @@
 }
 
 .mealsBox {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-bottom: 1px solid var(--border);
+  overflow: scroll;
 }
 
 .meals {

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 import { saveData } from '../utilities/file';
 import { useLocalStorage } from '../utilities/storage';
 import mealPickerData from '../data/mealPicker.json';

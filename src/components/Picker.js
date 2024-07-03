@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'preact/hooks';
 import PropTypes from 'prop-types';
 import MealScroller from './MealScroller';
 import styles from '../styles/Picker.module.css';

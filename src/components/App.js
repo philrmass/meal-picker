@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'preact/hooks';
 import { v4 as uuidv4 } from 'uuid';
 import { saveData } from '../utilities/file';
 import { useLocalStorage } from '../utilities/storage';

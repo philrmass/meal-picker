@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'preact/hooks';
 import PropTypes from 'prop-types';
 import styles from '../styles/MealScroller.module.css';
 
@@ -92,7 +92,7 @@ function MealScroller({
           style={topStyle}
         >
           {names.map((name, index) => (
-            <div key={index} className={styles.name}> {/*eslint-disable-line react/no-array-index-key*/}
+            <div key={index} className={styles.name}> {/* eslint-disable-line */}
               {name}
             </div>
           ))}
